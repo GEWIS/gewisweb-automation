@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+    automation:
+        image: web.docker-registry.gewis.nl/gewisweb_automation:latest
+        build: .
+        environment:
+            - USERNAME=gewis
+            - PASSWORD=gewis
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - gewisweb_automation_network
+        restart: unless-stopped
+
+networks:
+    gewisweb_automation_network:
