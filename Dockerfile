@@ -7,6 +7,7 @@ RUN apt-get update \
         docker.io \
         docker-compose \
         git \
+        jq \
         make \
     && apt-get upgrade -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
