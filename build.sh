@@ -1,4 +1,5 @@
 #!/bin/sh
+cd /code/gewisweb || exit
 LATEST_COMMIT=$(git log -n 1 --format="%H")
 if [ -f /code/LATEST_BUILD ]; then
     LATEST_BUILD=$(cat /code/LATEST_BUILD)
@@ -17,7 +18,6 @@ if [ -f /code/LOCK_UPDATE_DOCKER ]; then
 fi
 echo "Creating build lock"
 echo "locked" >/code/LOCK_BUILD
-cd /code/gewisweb || exit
 echo "Pulling sources"
 git pull
 echo "Building images"
