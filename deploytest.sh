@@ -42,6 +42,6 @@ curl -X POST "https://docker.gewis.nl/api/stacks/$STACK_ID/start" -H "Authorizat
 echo "Logging out of Portainer"
 curl -X POST https://docker.gewis.nl/api/auth/logout -H "Authorization: Bearer $JWT"
 echo "Successfully deployed (test) commit $LATEST_COMMIT"
-echo "$LATEST_COMMIT" >/code/LATEST_DEPLOY_TEST
+echo "$LATEST_BUILD" >/code/LATEST_DEPLOY_TEST
 echo "Removing test deployment lock"
 rm -f /code/LOCK_DEPLOY_TEST
