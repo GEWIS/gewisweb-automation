@@ -9,6 +9,6 @@ else
     && git branch --set-upstream-to=origin/master master
 fi
 echo "Successfully enterered gewisweb"
-docker login -u "${USERNAME}" -p "${PASSWORD}" web.docker-registry.gewis.nl
+docker login -u "$USERNAME" -p "$PASSWORD" web.docker-registry.gewis.nl
 echo "Starting cron"
 cron -f -L 7

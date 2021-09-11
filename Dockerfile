@@ -2,6 +2,7 @@ FROM ubuntu:latest as gewisweb_automation
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+        curl \
         cron \
         docker \
         docker.io \
