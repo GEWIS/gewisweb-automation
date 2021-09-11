@@ -1,4 +1,6 @@
 #!/bin/sh
+echo "Preparing environment variables"
+printenv | sed 's/^\(.*\)$/export \1/g' | grep -E "^export (USERNAME|PASSWORD)" > ./config/bash.env
 if [ -f /code/gewisweb ]
 then
     cd /code/gewisweb || exit

@@ -8,6 +8,7 @@
 # │ │ │ │ │
 # * * * * *  command to execute
 # Don't remove the empty line at the end of this file. It is required to run the cron job
-0 3 * * 6 /bin/sh /code/updatedocker.sh > /proc/$(cat /var/run/crond.pid)/fd/1 2>&1
-* * * * * /bin/sh /code/build.sh > /proc/$(cat /var/run/crond.pid)/fd/1 2>&1
-* * * * * /bin/sh /code/deploytest.sh > /proc/$(cat /var/run/crond.pid)/fd/1 2>&1
+0 3 * * 6 { . /code/config/bash.env && /bin/sh /code/updatedocker.sh; } > /proc/$(cat /var/run/crond.pid)/fd/1 2>&1
+* * * * * { . /code/config/bash.env && /bin/sh /code/build.sh; } > /proc/$(cat /var/run/crond.pid)/fd/1 2>&1
+* * * * * { . /code/config/bash.env && /bin/sh /code/deploytest.sh; } > /proc/$(cat /var/run/crond.pid)/fd/1 2>&1
+# 0 4 * * 6 { . /code/config/bash.env && /bin/sh /code/deploy.sh; } > /proc/$(cat /var/run/crond.pid)/fd/1 2>&1

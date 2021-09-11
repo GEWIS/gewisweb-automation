@@ -29,9 +29,9 @@ fi
 echo "Creating test deployment lock"
 echo "locked" >/code/LOCK_DEPLOY_TEST
 echo "Logging into Portainer"
-JWT=$(curl -X POST https://docker.gewis.nl/api/auth -d '{"username": "'"$USERNAME"'", "password": "'"$PASSWORD"'"}' | jq -r .jwt)
+JWT=$(curl -X POST https://docker.gewis.nl/api/auth -d '{"username": "'"$USERNAME"'", "password": "'"$PASSWORD"'"}' | jq -r '.jwt')
 echo "Retrieving gewisweb_web:development image ID"
-IMAGE_ID=$(curl -g -X GET "https://docker.gewis.nl/api/endpoints/$ENDPOINT_ID/docker/images/json?filters={\"reference\":[\"web.docker-registry.gewis.nl/gewisweb_web:development\"]}" -H "Authorization: Bearer $JWT" | jq -r .[0].Id)
+IMAGE_ID=$(curl -g -X GET "https://docker.gewis.nl/api/endpoints/$ENDPOINT_ID/docker/images/json?filters={\"reference\":[\"web.docker-registry.gewis.nl/gewisweb_web:development\"]}" -H "Authorization: Bearer $JWT" | jq -r '[.[] ] | .[0].Id')
 echo "The retrieved Image ID is $IMAGE_ID"
 echo "Stopping stack"
 curl -X POST "https://docker.gewis.nl/api/stacks/$STACK_ID/stop" -H "Authorization: Bearer $JWT"
